@@ -18,7 +18,7 @@ public class Unit : MonoBehaviour
     void Start()
     {
       
-        mu_input = new Keyboard();
+        mu_input = new Keyboard(step);
     }
 
 
@@ -33,7 +33,7 @@ public class Unit : MonoBehaviour
 
     void FixedUpdate()
     {
-        mu_input.MoveControl();
+        mu_input.Move_control();
     }
 
 
@@ -41,22 +41,27 @@ public class Unit : MonoBehaviour
     void Edit_Cord()
     {
 
-        if (mu_input.move.beak == 0001)
-        {
-            gameObject.transform.Translate(-Vector3.forward * Time.deltaTime / step);
-        }
-        if (mu_input.move.forward == 0001)
-        {
-            gameObject.transform.Translate(Vector3.forward * Time.deltaTime / step);
-        }
-        if (mu_input.move.left == 0001)
-        {
-            gameObject.transform.Translate(-Vector3.right * Time.deltaTime / step);
-        }
-        if (mu_input.move.right == 0001)
-        {
-            gameObject.transform.Translate(Vector3.right * Time.deltaTime / step);
-        }
+        //if (mu_input.move.beak == 0001)
+        //{
+        //    gameObject.transform.Translate(-Vector3.forward * Time.deltaTime / step);
+        //}
+        //if (mu_input.move.forward == 0001)
+        //{
+        //    gameObject.transform.Translate(Vector3.forward * Time.deltaTime / step);
+        //}
+        //if (mu_input.move.left == 0001)
+        //{
+        //    gameObject.transform.Translate(-Vector3.right * Time.deltaTime / step);
+        //}
+        //if (mu_input.move.right == 0001)
+        //{
+        //    gameObject.transform.Translate(Vector3.right * Time.deltaTime / step);
+        //}
+
+
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x +  (mu_input.move_step.x == 0 ? 0 : (Time.deltaTime / mu_input.move_step.x)),
+                                                    gameObject.transform.position.y +  (mu_input.move_step.y == 0 ? 0 : (Time.deltaTime / mu_input.move_step.y)),
+                                                    gameObject.transform.position.z +  (mu_input.move_step.z == 0 ? 0: (Time.deltaTime / mu_input.move_step.z)));
     }
 
 }

@@ -7,61 +7,73 @@ using UnityEngine;
 public class Keyboard : My_input
 {
     // Start is called before the first frame update
-    void Start()
+
+    public Keyboard(float step)
     {
-        
+        this.step = step;
     }
 
 
-
-
-    public override void MoveControl()
+    public override void Camera_control()
     {
-        Debug.Log(Input.GetKey(KeyCode.A)+" "+ Input.GetKey(KeyCode.D) + " " + Input.GetKey(KeyCode.W) + " " + Input.GetKey(KeyCode.S));
+
+    }
+
+
+  
+
+    public override void Move_control()
+    {
+        
+        move_step = new Vector3(0,0,0);
+       
         //right
         if (Input.GetKey(KeyCode.D))
         {
-            move.right = 0001;
+            move_step.x = step;
+           // move.right = 0001;
         }
-        else if(Input.GetKey(KeyCode.D) == false) 
-        {
-            move.right = 0000;
-        }
+        //else if(Input.GetKey(KeyCode.D) == false) 
+        //{
+           
+        //    move.right = 0000;
+        //}
 
 
         //left
         if (Input.GetKey(KeyCode.A))
         {
-
-            move.left = 0001;
+            move_step.x = -step;
+         //   move.left = 0001;
         }
-        else if (Input.GetKey(KeyCode.A) == false)
-        {
-            move.left = 0000;
-        }
+        //else if (Input.GetKey(KeyCode.A) == false)
+        //{
+        //    move.left = 0000;
+        //}
 
 
         //forward
         if (Input.GetKey(KeyCode.W))
         {
-            move.forward = 0001;
+            move_step.z = step;
+            //move.forward = 0001;
         }
-        else if (Input.GetKey(KeyCode.W) == false)
-        {
-            move.forward = 0000;
-        }
+        //else if (Input.GetKey(KeyCode.W) == false)
+        //{
+        //    move.forward = 0000;
+        //}
 
 
         //beak
         if (Input.GetKey(KeyCode.S))
         {
-
-            move.beak = 0001;
+            move_step.z = -step ;
+          //  move.beak = 0001;
         }
-        else if (Input.GetKey(KeyCode.S)==false)
-        {
-            move.beak = 0000;
-        }
+        //else if (Input.GetKey(KeyCode.S)==false)
+        //{
+        //    move.beak = 0000;
+        //}
 
 
 
