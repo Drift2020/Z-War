@@ -1,18 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Weapone : MonoBehaviour
+public enum ammo_type
+{
+    gun
+
+}
+
+public interface Weapone 
 {
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
+
+    bool is_shot { get; set; }
+    bool re_shot { get; set; }
+
+    int ammo { get; set; }
+    int clip { get; set; }
+
+
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+
+    void Shot();
+
+    void Reload();
+
+
+    
 }

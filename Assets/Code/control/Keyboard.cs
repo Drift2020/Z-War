@@ -11,18 +11,31 @@ public class Keyboard : My_input
     public Keyboard(float step)
     {
         this.step = step;
+       
     }
-
+    public Keyboard(float step,GameObject camera_x, GameObject player)
+    {
+        this.step = step;
+        this.camera_x = camera_x;
+     
+        this.player = player;
+    }
 
     public override void Camera_control()
     {
+        move_camera = new Vector3(0, 0, 0);
+
+        move_camera.x = Input.GetAxis("Mouse X");
+        move_camera.y = Input.GetAxis("Mouse Y");
+
+        
 
     }
 
 
   
 
-    public override void Move_control()
+    public override void Control(ref Weapone my_weapone)
     {
         
         move_step = new Vector3(0,0,0);
@@ -31,62 +44,57 @@ public class Keyboard : My_input
         if (Input.GetKey(KeyCode.D))
         {
             move_step.x = step;
-           // move.right = 0001;
-        }
-        //else if(Input.GetKey(KeyCode.D) == false) 
-        //{
            
-        //    move.right = 0000;
-        //}
-
-
+        }
+    
         //left
         if (Input.GetKey(KeyCode.A))
         {
-            move_step.x = -step;
-         //   move.left = 0001;
+            move_step.x += -step;
+       
         }
-        //else if (Input.GetKey(KeyCode.A) == false)
-        //{
-        //    move.left = 0000;
-        //}
-
-
+       
         //forward
         if (Input.GetKey(KeyCode.W))
         {
             move_step.z = step;
-            //move.forward = 0001;
+         
         }
-        //else if (Input.GetKey(KeyCode.W) == false)
-        //{
-        //    move.forward = 0000;
-        //}
-
 
         //beak
         if (Input.GetKey(KeyCode.S))
         {
-            move_step.z = -step ;
-          //  move.beak = 0001;
+            move_step.z += -step ;
+        
         }
-        //else if (Input.GetKey(KeyCode.S)==false)
-        //{
-        //    move.beak = 0000;
-        //}
+
+        //shot
+        if (Input.GetMouseButton(0))
+        {
+          
+            my_weapone.is_shot = true;
+            my_weapone.Shot();
+            my_weapone.re_shot = false;
+        }
+        else
+        {
+            my_weapone.is_shot = false;
+            my_weapone.re_shot = true;
+        }
 
 
+        //reload
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            my_weapone.Reload();
 
+        }
 
         ////jump
         //if (Input.GetKeyDown(KeyCode.S))
         //{
 
-        //    move.beak = 0001;
-        //}
-        //else if (Input.GetKeyUp(KeyCode.S))
-        //{
-        //    move.beak = 0000;
+
         //}
 
 
@@ -94,15 +102,46 @@ public class Keyboard : My_input
         //if (Input.GetKeyDown(KeyCode.S))
         //{
 
-        //    move.beak = 0001;
-        //}
-        //else if (Input.GetKeyUp(KeyCode.S))
-        //{
-        //    move.beak = 0000;
+
         //}
 
 
     }
+
+
+
+  public override void Edit_Cord()
+    {
+
+        if (move_step.z < 0)
+        {
+            player.transform.Translate(-Vector3.forward * Time.deltaTime / step);
+        }
+        if (move_step.z > 0)
+        {
+            player.transform.Translate(Vector3.forward * Time.deltaTime / step);
+        }
+        if (move_step.x < 0)
+        {
+            player.transform.Translate(-Vector3.right * Time.deltaTime / step);
+        }
+        if (move_step.x > 0)
+        {
+            player.transform.Translate(Vector3.right * Time.deltaTime / step);
+        }
+
+
+
+
+
+      
+        player.transform.Rotate(new Vector3(0, move_camera.x, 0));
+
+        camera_x.transform.Rotate(new Vector3(-move_camera.y, 0, 0));
+
+
+       
+    }
     // Update is called once per frame
-  
+
 }
