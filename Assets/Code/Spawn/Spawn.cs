@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawn : MonoBehaviour
+public interface Spawn
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
+    float timeOut { get; set; }
+    bool is_created { get; set; }
+    GameObject item { get; set; }
+    GameObject obj { get; set; }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    My_timer timer { get; set; }
+
+    void Spawn_Item();
+    
+
 }

@@ -23,4 +23,10 @@ public class Ammo : MonoBehaviour
         _my_type = my_type;
         _count = count;
     }
+
+
+    void Update()
+    {
+        gameObject.transform.Rotate(0, 1, 0);  
+    }
 }

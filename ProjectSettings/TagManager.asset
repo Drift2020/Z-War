@@ -7,6 +7,8 @@ TagManager:
   - Spawn
   - Wall
   - CAmmo
+  - Ammo
+  - SpawnItem
   layers:
   - Default
   - TransparentFX

@@ -10,7 +10,7 @@ public class Gun : MonoBehaviour, Weapone
 
     public int ammo { get; set; }
     public int clip { get; set; }
-
+    public ammo_type _my_ammo { get; }
     public bool re_shot { get; set; }
 
 
@@ -22,7 +22,7 @@ public class Gun : MonoBehaviour, Weapone
     {
         re_shot = true;
         is_shot = false;
-
+        _my_ammo = 0;
         ammo = 25;
         clip = 6;
     }

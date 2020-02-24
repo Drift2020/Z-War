@@ -16,7 +16,7 @@ public interface Weapone
 
     bool is_shot { get; set; }
     bool re_shot { get; set; }
-
+    ammo_type _my_ammo { get; }
     int ammo { get; set; }
     int clip { get; set; }
 
