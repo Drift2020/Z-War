@@ -12,6 +12,10 @@ public class Gun : MonoBehaviour, Weapone
     public bool is_equip { get; set; }
     public int ammo { get; set; }
     public int clip { get; set; }
+
+    int max_clip;
+    public int max_clip { get; set; }
+
     public ammo_type _my_ammo { get; }
 
 
@@ -22,7 +26,13 @@ public class Gun : MonoBehaviour, Weapone
 			gameObject.transform.Rotate(0,1,0);
 		}
 
+        Shot();
 
+        
+        if(clip != max_clip && is_reload)
+        {
+            Reload();
+        }
 
 	}
 
@@ -32,14 +42,15 @@ public class Gun : MonoBehaviour, Weapone
         is_trigger = true;
         is_shot = false;
         is_reload= false;
+        is_equip = true;
         _my_ammo = 0;
         ammo = 25;
-        clip = 6;
+        clip = max_clip;
     }
 
     public void Shot()
     {
-        if (is_shot && clip>0 && is_trigger)
+        if (is_shot && clip>0 && !is_trigger)
         {
                     
             RaycastHit hit;
@@ -54,24 +65,25 @@ public class Gun : MonoBehaviour, Weapone
                 }
             }
             clip--;
-            is_trigger = false;
+            is_shot = false;
         }
     }
 
     public void Reload()
     {
-        if(ammo>6)
+
+        if(ammo>max_clip)
         {
           
             if(clip > 0)
             {
-                ammo = ammo - (6 - clip);
-                clip = clip + (6 - clip);
+                ammo = ammo - (max_clip - clip);
+                clip = clip + (max_clip - clip);
             }
             else
             {
-                ammo = ammo - 6;
-                clip =  6 ;
+                ammo = ammo - max_clip;
+                clip =  max_clip ;
             }
             
           
@@ -82,8 +94,8 @@ public class Gun : MonoBehaviour, Weapone
 
             if (clip > 0)
             {
-                ammo = ammo - (6 - clip);
-                clip = clip + (6 - clip);
+                ammo = ammo - (max_clip - clip);
+                clip = clip + (max_clip - clip);
             }
             else
             {
@@ -98,12 +110,13 @@ public class Gun : MonoBehaviour, Weapone
 
     public void Trigger_is_pulled()
     {
-        is_trigger = false;
+        is_trigger = true;
     }
 
     public void Trigger_is_not_pulled()
     {
-        is_trigger = true;
+        is_trigger = false;
+        is_shot = true;
     }
 
 
