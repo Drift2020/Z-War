@@ -7,13 +7,13 @@ public class Gun : MonoBehaviour, Weapone
 {
 
     public bool  is_shot { get; set; }
-
+    public bool is_trigger { get; set; }
+    public bool is_reload { get; set; }
+    public bool is_equip { get; set; }
     public int ammo { get; set; }
     public int clip { get; set; }
     public ammo_type _my_ammo { get; }
-    public bool re_shot { get; set; }
 
-    public bool is_equip { get; set; }
 
     void Update()
 	{
@@ -21,13 +21,17 @@ public class Gun : MonoBehaviour, Weapone
 		{
 			gameObject.transform.Rotate(0,1,0);
 		}
+
+
+
 	}
 
     public GameObject my_cross;
     public  Gun()
     {
-        re_shot = true;
+        is_trigger = true;
         is_shot = false;
+        is_reload= false;
         _my_ammo = 0;
         ammo = 25;
         clip = 6;
@@ -35,7 +39,7 @@ public class Gun : MonoBehaviour, Weapone
 
     public void Shot()
     {
-        if (is_shot && clip>0 && re_shot)
+        if (is_shot && clip>0 && is_trigger)
         {
                     
             RaycastHit hit;
@@ -50,7 +54,7 @@ public class Gun : MonoBehaviour, Weapone
                 }
             }
             clip--;
-            re_shot = false;
+            is_trigger = false;
         }
     }
 
@@ -90,6 +94,16 @@ public class Gun : MonoBehaviour, Weapone
 
            
         }
+    }
+
+    public void Trigger_is_pulled()
+    {
+        is_trigger = false;
+    }
+
+    public void Trigger_is_not_pulled()
+    {
+        is_trigger = true;
     }
 
 

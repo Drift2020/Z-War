@@ -36,7 +36,7 @@ public class Unit : MonoBehaviour
 
         mu_input.Edit_Cord();
         Take_item();
-
+        
 
 
 
@@ -45,7 +45,7 @@ public class Unit : MonoBehaviour
     void FixedUpdate()
     {
         mu_input.Camera_control();
-        mu_input.Control(ref my_weapone);
+        mu_input.Control(ref my_weapone.is_trigger,ref my_weapone.is_reload);
       
     }
 

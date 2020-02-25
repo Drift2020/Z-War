@@ -5,7 +5,6 @@ using UnityEngine;
 public class Medicine_chest : MonoBehaviour
 {
     int _count;
-
     public int count { get { return _count; } }
    
     public Medicine_chest()

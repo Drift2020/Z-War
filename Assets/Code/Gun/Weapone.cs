@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public enum ammo_type
 {
-    gun
-
+    gun,
+    bow
 }
 
 public interface Weapone 
@@ -15,7 +15,8 @@ public interface Weapone
 
 
     bool is_shot { get; set; }
-    bool re_shot { get; set; }
+    bool is_trigger { get; set; }
+    bool is_reload { get; set; }
     ammo_type _my_ammo { get; }
     int ammo { get; set; }
     int clip { get; set; }
@@ -28,6 +29,10 @@ public interface Weapone
     void Shot();
 
     void Reload();
+
+    void Trigger_is_pulled();
+
+    void Trigger_is_not_pulled();
 
     void equip();
 	
