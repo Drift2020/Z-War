@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class Medicine_chest : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    int _count;
+
+    public int count { get { return _count; } }
+   
+    public Medicine_chest()
+    {     
+        _count = 50;
     }
 
-    // Update is called once per frame
+    public Medicine_chest(int count)
+    {
+        _count = count;
+    }
+
     void Update()
     {
-        
+        gameObject.transform.Rotate(0, 1, 0);  
     }
 }
