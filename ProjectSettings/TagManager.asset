@@ -9,6 +9,9 @@ TagManager:
   - CAmmo
   - Ammo
   - SpawnItem
+  - GunItem
+  - Gun
+  - Kill
   layers:
   - Default
   - TransparentFX

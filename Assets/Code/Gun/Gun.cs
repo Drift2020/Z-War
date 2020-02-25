@@ -69,7 +69,7 @@ public class Gun : MonoBehaviour, Weapone
     {
         if (is_shot && clip>0 && !is_trigger)
         {
-            Debug.Log("!!!");
+           
             RaycastHit hit;
             // Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             // Ray ray = new Ray(my_cross.transform.position, Vector3.forward);
@@ -77,7 +77,10 @@ public class Gun : MonoBehaviour, Weapone
             {
                 if (hit.collider != null)
                 {
-                   hit.transform.gameObject.active = false;
+                    if (hit.transform.tag == "Kill")
+                    {
+                        hit.transform.gameObject.active = false;
+                    }
                    Debug.DrawLine(my_cross.transform.position, transform.TransformDirection(Vector3.forward));               
                 }
             }
@@ -139,7 +142,8 @@ public class Gun : MonoBehaviour, Weapone
 
     public void equip()
 	{
-      
+        tag = "Gun";
+        transform.rotation = Quaternion.Euler(0, 0, 0);
         for (int i=0;i< transform.GetChildCount(); i++)
         {
             transform.GetChild(i).GetComponent<BoxCollider>().isTrigger = false;
@@ -149,6 +153,7 @@ public class Gun : MonoBehaviour, Weapone
 	
 	public void unequip()
 	{
+        tag = "GunItem";
         for (int i = 0; i < transform.GetChildCount(); i++)
         {
             transform.GetChild(i).GetComponent<BoxCollider>().isTrigger = true;

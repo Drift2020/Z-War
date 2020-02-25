@@ -75,12 +75,17 @@ public class Keyboard : My_input
             //  my_weapone.is_shot = true;
             //  my_weapone.Trigger_is_pulled();
             //   my_weapone.re_shot = false;
-
-            _mu_weapone.Trigger_is_pulled();
+            if (_mu_weapone != null)
+            {
+                _mu_weapone.Trigger_is_pulled();
+            }
         }
         else
         {
-            _mu_weapone.Trigger_is_not_pulled();
+            if (_mu_weapone != null)
+            {
+                _mu_weapone.Trigger_is_not_pulled();
+            }
          //   my_weapone.is_shot = false;
           //  my_weapone.re_shot = true;
         }
@@ -89,8 +94,10 @@ public class Keyboard : My_input
         //reload
         if (Input.GetKeyDown(KeyCode.R))
         {
-            _mu_weapone.Reload();
-         
+            if (_mu_weapone != null)
+            {
+                _mu_weapone.Reload();
+            }
           
 
         }

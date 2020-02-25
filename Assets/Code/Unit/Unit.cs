@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +17,7 @@ public class Unit : MonoBehaviour
     public float heat_point;
    
     public GameObject camera_X;
- 
+    public GameObject Arm;
 
 
     // Start is called before the first frame update
@@ -24,7 +25,11 @@ public class Unit : MonoBehaviour
     {
         Screen.lockCursor = true;
         my_weapone = GetComponentInChildren<Gun>();
-        my_weapone.equip();
+        
+        if (my_weapone != null)
+        {
+            my_weapone.equip();
+        }
         mu_input = new Keyboard(step, camera_X,gameObject);
         Trigger = transform.GetChild(0).GetComponent<SphereCollider>();
         
@@ -54,18 +59,28 @@ public class Unit : MonoBehaviour
     {
         foreach (Collider item in Physics.OverlapSphere(transform.position, 0.5f))
         {
-
+            Debug.Log(item.tag);
             if (item.tag == "Ammo")
             {
                 Ammo _ammo = item.GetComponent<Ammo>();
 
-                if (_ammo.my_type == my_weapone.my_ammo)
+                if (my_weapone != null && _ammo.my_type == my_weapone.my_ammo)
                 {
                     my_weapone.ammo += _ammo.count;
                     _ammo = null;
                     Destroy(item.gameObject);
 
                 }
+            }
+
+            if (item.tag == "GunItem")
+            {
+                my_weapone = item.GetComponent<Gun>();
+                my_weapone.equip();
+                item.transform.SetParent(Arm.transform);
+               
+                item.transform.position = new Vector3(Arm.transform.position.x , Arm.transform.position.y, Arm.transform.position.z);
+                item.transform.localRotation = new Quaternion(0, 0, 0, 0);
             }
 
         }

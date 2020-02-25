@@ -192,9 +192,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6535735117580354993}
   - component: {fileID: 7534724498428875324}
+  - component: {fileID: 846804376260200884}
   m_Layer: 0
   m_Name: Gun
-  m_TagString: Untagged
+  m_TagString: GunItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -230,6 +231,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _max_clip: 6
   my_cross: {fileID: 6905613103879509136}
+--- !u!65 &846804376260200884
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5274962529155181642}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5, z: 1}
+  m_Center: {x: 0, y: 0, z: 0.2}
 --- !u!1 &6905613103879509136
 GameObject:
   m_ObjectHideFlags: 0

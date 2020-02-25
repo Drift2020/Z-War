@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class AmmoUI : MonoBehaviour
 {
-    public Unit my_weapone;
+    public Unit player;
     public Text clip;
     public Text ammo;
 
@@ -13,7 +13,11 @@ public class AmmoUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        clip.text = my_weapone.my_weapone.clip.ToString();
-        ammo.text = my_weapone.my_weapone.ammo.ToString();
+       
+        if (player.my_weapone != null)
+        {
+            clip.text = player.my_weapone.clip.ToString();
+            ammo.text = player.my_weapone.ammo.ToString();
+        }
     }
 }
