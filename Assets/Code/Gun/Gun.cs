@@ -13,9 +13,15 @@ public class Gun : MonoBehaviour, Weapone
     public ammo_type _my_ammo { get; }
     public bool re_shot { get; set; }
 
+    public bool is_equip { get; set; }
 
-
-
+    void Update()
+	{
+		if(!is_equip)
+		{
+			gameObject.transform.Rotate(0,1,0);
+		}
+	}
 
     public GameObject my_cross;
     public  Gun()
@@ -85,6 +91,17 @@ public class Gun : MonoBehaviour, Weapone
            
         }
     }
+
+
+    public void equip()
+	{
+		is_equip =true;
+	}
+	
+	public void unequip()
+	{
+		is_equip =false;
+	}
 }
 
 

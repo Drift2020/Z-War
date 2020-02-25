@@ -19,7 +19,7 @@ public interface Weapone
     ammo_type _my_ammo { get; }
     int ammo { get; set; }
     int clip { get; set; }
-
+    bool is_equip { get; set; }
 
 
     // Update is called once per frame
@@ -29,6 +29,8 @@ public interface Weapone
 
     void Reload();
 
-
+    void equip();
+	
+	void unequip();
     
 }
