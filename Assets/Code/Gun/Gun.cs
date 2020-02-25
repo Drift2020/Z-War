@@ -7,16 +7,22 @@ public class Gun : MonoBehaviour, Weapone
 {
 
     public bool  is_shot { get; set; }
+
+
     public bool is_trigger { get; set; }
+
+
     public bool is_reload { get; set; }
     public bool is_equip { get; set; }
     public int ammo { get; set; }
     public int clip { get; set; }
 
-    int max_clip;
-    public int max_clip { get; set; }
+    [SerializeField]
+    int _max_clip;
+    public int max_clip { get {return _max_clip; } set { _max_clip = value; } }
 
-    public ammo_type _my_ammo { get; }
+    ammo_type _my_ammo;
+    public ammo_type my_ammo { get { return _my_ammo; } }
 
 
     void Update()
@@ -35,6 +41,16 @@ public class Gun : MonoBehaviour, Weapone
         }
 
 	}
+    void Start()
+    {
+        is_trigger = true;
+        is_shot = false;
+        is_reload = false;
+        unequip();
+        _my_ammo = ammo_type.gun;
+        ammo = 25;
+        clip = _max_clip;
+    }
 
     public GameObject my_cross;
     public  Gun()
@@ -42,17 +58,18 @@ public class Gun : MonoBehaviour, Weapone
         is_trigger = true;
         is_shot = false;
         is_reload= false;
-        is_equip = true;
-        _my_ammo = 0;
+        is_equip = false;
+        _my_ammo = ammo_type.gun;
         ammo = 25;
-        clip = max_clip;
+        clip = _max_clip;
+
     }
 
     public void Shot()
     {
         if (is_shot && clip>0 && !is_trigger)
         {
-                    
+            Debug.Log("!!!");
             RaycastHit hit;
             // Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             // Ray ray = new Ray(my_cross.transform.position, Vector3.forward);
@@ -110,24 +127,33 @@ public class Gun : MonoBehaviour, Weapone
 
     public void Trigger_is_pulled()
     {
-        is_trigger = true;
+        is_trigger = false;
     }
 
     public void Trigger_is_not_pulled()
     {
-        is_trigger = false;
+        is_trigger = true;
         is_shot = true;
     }
 
 
     public void equip()
 	{
-		is_equip =true;
+      
+        for (int i=0;i< transform.GetChildCount(); i++)
+        {
+            transform.GetChild(i).GetComponent<BoxCollider>().isTrigger = false;
+        }
+        is_equip =true;
 	}
 	
 	public void unequip()
 	{
-		is_equip =false;
+        for (int i = 0; i < transform.GetChildCount(); i++)
+        {
+            transform.GetChild(i).GetComponent<BoxCollider>().isTrigger = true;
+        }
+        is_equip =false;
 	}
 }
 

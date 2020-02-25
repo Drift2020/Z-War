@@ -9,10 +9,14 @@ public class Bow : MonoBehaviour, Weapone
     public bool is_trigger { get; set; }
     public bool is_reload { get; set; }
     public bool is_equip { get; set; }
-    public int ammo { get; set; }
-    public int clip { get; set; }
-    public ammo_type _my_ammo { get; }
 
+    public int ammo { get; set; }
+    int _max_clip;
+    public int max_clip { get; set; }
+    public int clip { get; set; }
+
+    ammo_type _my_ammo;
+    public ammo_type my_ammo { get { return _my_ammo; } }
 
     public float _max_power_shot;
     public float _power_shot_step;
@@ -25,7 +29,7 @@ public class Bow : MonoBehaviour, Weapone
         is_shot = false;
         is_reload = false;
         is_equip = true;
-        _my_ammo = 1;
+        _my_ammo = ammo_type.bow;
         ammo = 10;
         clip = 1;
     }
@@ -48,7 +52,7 @@ public class Bow : MonoBehaviour, Weapone
 
         if(is_trigger&& _power_shot <= _max_power_shot)
         {
-                _power_shot += Time.deltaTime * _power_shot_step / 100
+           // _power_shot += Time.deltaTime * _power_shot_step / 100;
         }
 
         if (clip>0 && !is_trigger)

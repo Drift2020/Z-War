@@ -42,7 +42,7 @@ public abstract class My_input : MonoBehaviour
     // Start is called before the first frame update
 
 
-    public virtual void Control(ref Weapone my_weapone)
+    public virtual void Control(Weapone _mu_weapone)
     {
      
     }

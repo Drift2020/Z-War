@@ -24,6 +24,7 @@ public class Unit : MonoBehaviour
     {
         Screen.lockCursor = true;
         my_weapone = GetComponentInChildren<Gun>();
+        my_weapone.equip();
         mu_input = new Keyboard(step, camera_X,gameObject);
         Trigger = transform.GetChild(0).GetComponent<SphereCollider>();
         
@@ -45,7 +46,7 @@ public class Unit : MonoBehaviour
     void FixedUpdate()
     {
         mu_input.Camera_control();
-        mu_input.Control(ref my_weapone.is_trigger,ref my_weapone.is_reload);
+        mu_input.Control(my_weapone);
       
     }
 
@@ -58,7 +59,7 @@ public class Unit : MonoBehaviour
             {
                 Ammo _ammo = item.GetComponent<Ammo>();
 
-                if (_ammo.my_type == my_weapone._my_ammo)
+                if (_ammo.my_type == my_weapone.my_ammo)
                 {
                     my_weapone.ammo += _ammo.count;
                     _ammo = null;

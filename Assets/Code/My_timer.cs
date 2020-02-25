@@ -27,12 +27,12 @@ public class My_timer
         if (!is_pause && is_work && !is_end)
         {
             time = time - Time.deltaTime;
-            Debug.Log("time:"+time);
+           // Debug.Log("time:"+time);
         }
       
         if (time <= 0 && !is_end)
         {
-            Debug.Log("END");
+          //  Debug.Log("END");
             my_function();
             is_end = true;
             is_work = false;
@@ -41,7 +41,7 @@ public class My_timer
 
     public void Start_timer(float time, SpawnItem function)
     {
-        Debug.Log("Start");
+       // Debug.Log("Start");
         this.time = time;
         is_pause = false;
         is_end = false;

@@ -35,7 +35,7 @@ public class Keyboard : My_input
 
   
 
-    public override void Control(ref bool trigger_is_pulled,ref bool is_reloa_weapone)
+    public override void Control(Weapone _mu_weapone)
     {
         
         move_step = new Vector3(0,0,0);
@@ -71,16 +71,16 @@ public class Keyboard : My_input
         //shot
         if (Input.GetMouseButton(0))
         {
-          
-          //  my_weapone.is_shot = true;
-          //  my_weapone.Trigger_is_pulled();
-         //   my_weapone.re_shot = false;
 
-            trigger_is_pulled=true;
+            //  my_weapone.is_shot = true;
+            //  my_weapone.Trigger_is_pulled();
+            //   my_weapone.re_shot = false;
+
+            _mu_weapone.Trigger_is_pulled();
         }
         else
         {
-            trigger_is_pulled=false;
+            _mu_weapone.Trigger_is_not_pulled();
          //   my_weapone.is_shot = false;
           //  my_weapone.re_shot = true;
         }
@@ -89,14 +89,15 @@ public class Keyboard : My_input
         //reload
         if (Input.GetKeyDown(KeyCode.R))
         {
-            is_reloa_weapone = true;
-           // my_weapone.Reload();
+            _mu_weapone.Reload();
+         
+          
 
         }
-        else
-        {
-            is_reloa_weapone = false;
-        }
+        //else
+        //{
+        //    _mu_weapone.is_reload = false;
+        //}
 
         ////jump
         //if (Input.GetKeyDown(KeyCode.S))

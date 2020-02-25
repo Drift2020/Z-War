@@ -228,6 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c6536220862ca34798a6e291eeda463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _max_clip: 6
   my_cross: {fileID: 6905613103879509136}
 --- !u!1 &6905613103879509136
 GameObject:

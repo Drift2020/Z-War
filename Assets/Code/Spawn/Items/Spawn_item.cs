@@ -105,7 +105,7 @@ public class Spawn_item : MonoBehaviour, Spawn
 
     public void Spawn_Item()
     {
-        Debug.Log("Clone");
+      //  Debug.Log("Clone");
         item = Instantiate(obj, new Vector3(transform.position.x, transform.position.y+1, transform.position.z), Quaternion.identity);
         is_created = true;
     }

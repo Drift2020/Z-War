@@ -25,9 +25,9 @@ public class Arrow : MonoBehaviour, Bullet
     }
 
      public Arrow()
-    {
+        {
 
-    }
+        }
 
     public void SetToRope(Transform ropeTransform)
     {
@@ -35,14 +35,14 @@ public class Arrow : MonoBehaviour, Bullet
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
 
-        Rigidbody.isKinematic = true;
+       GetComponent<Rigidbody>().isKinematic = true;
     }
 
     public void Shot(float velocity)
     {
         transform.parent = null;
-        Rigidbody.isKinematic = false;
-        Rigidbody.velocity = transform.forward * velocity;
+        GetComponent<Rigidbody>().isKinematic = false;
+        GetComponent<Rigidbody>().velocity = transform.forward * velocity;
     }
 
    
