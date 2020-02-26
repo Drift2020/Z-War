@@ -73,7 +73,26 @@ public class Unit : MonoBehaviour
                 }
             }
 
-            if (item.tag == "GunItem")
+            else if (item.tag == "Medicine_chest")
+            {
+                Medicine_chest _medicine_chest = item.GetComponent<Medicine_chest>();
+
+                if (heat_point<100)
+                {
+
+                    heat_point += Medicine_chest.count;
+
+                    if(heat_point>100)
+                    {
+                        heat_point=100;
+                    }
+
+                    Destroy(item.gameObject);
+
+                }
+            }
+
+            else if (item.tag == "GunItem")
             {
                 my_weapone = item.GetComponent<Gun>();
                 my_weapone.equip();

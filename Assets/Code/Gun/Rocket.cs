@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Arrow : MonoBehaviour, Bullet
+public class Rocket : MonoBehaviour, Bullet
 {
     public float hit { get; set; }
     public float radius { get; set; }
@@ -19,24 +19,10 @@ public class Arrow : MonoBehaviour, Bullet
 
     void Update()
     {
-      //  transform.Translate(Vector3.forward * Speed * Time.deltaTime);
-
+      
 
     }
 
-     public Arrow()
-        {
-
-        }
-
-    public void SetToRope(Transform ropeTransform)
-    {
-        transform.parent = ropeTransform;
-        transform.localPosition = Vector3.zero;
-        transform.localRotation = Quaternion.identity;
-
-       GetComponent<Rigidbody>().isKinematic = true;
-    }
 
     public void Shot(float velocity)
     {

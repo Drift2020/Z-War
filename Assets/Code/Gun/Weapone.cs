@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public enum ammo_type
 {
     gun,
-    bow
+    bow,
+    rocket
 }
 
 public interface Weapone 
