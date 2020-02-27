@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    public My_input mu_input;
-
     SphereCollider Trigger;
+    PhotonView photonView;
+
+    public My_input mu_input;
 
     public Weapone my_weapone;
 
@@ -23,6 +24,7 @@ public class Unit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        photonView = GetComponent<PhotonView>();
         Screen.lockCursor = true;
         my_weapone = GetComponentInChildren<Gun>();
         
@@ -39,8 +41,9 @@ public class Unit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!photonView.IsMine) return;
 
-        mu_input.Edit_Cord();
+        mu_input.Control(my_weapone);
         Take_item();
         
 
@@ -50,8 +53,11 @@ public class Unit : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(!photonView.IsMine) return;
+        
+        mu_input.Edit_Cord();
         mu_input.Camera_control();
-        mu_input.Control(my_weapone);
+      
       
     }
 

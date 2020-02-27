@@ -16,20 +16,15 @@ public class Keyboard : My_input
     public Keyboard(float step,GameObject camera_x, GameObject player)
     {
         this.step = step;
-        this.camera_x = camera_x;
-     
+        this.camera_x = camera_x;  
         this.player = player;
     }
 
     public override void Camera_control()
     {
         move_camera = new Vector3(0, 0, 0);
-
         move_camera.x = Input.GetAxis("Mouse X");
         move_camera.y = Input.GetAxis("Mouse Y");
-
-        
-
     }
 
 

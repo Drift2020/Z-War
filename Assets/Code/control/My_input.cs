@@ -13,6 +13,7 @@ public abstract class My_input : MonoBehaviour
 
     public Move move;
     public Vector3 move_step;
+    
     protected float step;
 
     public GameObject player;
