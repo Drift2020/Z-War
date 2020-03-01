@@ -1,25 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public struct Move
-{
-    public uint forward;
-    public uint beak;
-    public uint left;
-    public uint right;
-}
+
 public abstract class My_input : MonoBehaviour
 {
 
-    public Move move;
-    public Vector3 move_step;
-    
+    public bool is_step;
+    public bool is_run;
+
     protected float step;
+    protected float temp_step;
+    protected float run;
 
     public GameObject player;
 
     #region Camera
-    public GameObject camera_y;
     public GameObject camera_x;
 
     public Vector3 move_camera;
@@ -43,7 +38,7 @@ public abstract class My_input : MonoBehaviour
     // Start is called before the first frame update
 
 
-    public virtual void Control(Weapone _mu_weapone)
+    public virtual void Control(Weapone _mu_weapone,State _state)
     {
      
     }
@@ -53,7 +48,7 @@ public abstract class My_input : MonoBehaviour
 
     }
 
-    public virtual void Edit_Cord()
+    public virtual void Edit_Cord(State _state)
     {
 
     }

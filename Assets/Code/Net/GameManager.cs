@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
-      PhotonNetwork.Instantiate(PlayerPrefab.name, new Vector3(0,0,0),Quaternion.identity);
+        PhotonNetwork.Instantiate(PlayerPrefab.name, new Vector3(0,0,0),Quaternion.identity);
     }
 
     public void Leave()
@@ -37,5 +37,15 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
          Debug.LogFormat("Player {0} left room", newPlayer.NickName);
     }
-   
+
+    //public static object DeserializeTransform(byte[] data)
+    //{
+    //    Vector3 temp = new Vector3();
+        
+    //}
+    //public static byte[] SerializeTransform(object data)
+    //{
+
+    //}
+
 }

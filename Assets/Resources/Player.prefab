@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 5294267331920897958}
   - component: {fileID: 6186045229056187538}
   - component: {fileID: 6858415758252458189}
-  - component: {fileID: 5362464548379560781}
   - component: {fileID: 5294267331920897955}
   - component: {fileID: 5294267333496480675}
   m_Layer: 0
@@ -239,7 +238,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 6858415758252458189}
-  - {fileID: 5362464548379560781}
+  - {fileID: 5294267331920897955}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -258,22 +257,6 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
---- !u!114 &5362464548379560781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5294267331920897956}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 1
-  m_TeleportEnabled: 0
-  m_TeleportIfDistanceGreaterThan: 3
 --- !u!114 &5294267331920897955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,7 +269,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dbe6bdbc6e38ee4d92f83231a0f766b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  photonView: {fileID: 0}
+  camera_X: {fileID: 0}
+  Arm: {fileID: 0}
+  my_ui: {fileID: 0}
   mu_input: {fileID: 0}
+  Trigger: {fileID: 0}
+  name: SAS
+  step: 0.5
+  run: 0.1
+  heat_point: 100
 --- !u!54 &5294267333496480675
 Rigidbody:
   m_ObjectHideFlags: 0

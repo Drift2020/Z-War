@@ -17,8 +17,8 @@ public class Gun : MonoBehaviour, Weapone
     public int ammo { get; set; }
     public int clip { get; set; }
 
-    [SerializeField]
-    int _max_clip;
+    // [SerializeField]
+    public int _max_clip;
     public int max_clip { get {return _max_clip; } set { _max_clip = value; } }
 
     ammo_type _my_ammo;

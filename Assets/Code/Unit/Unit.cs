@@ -6,75 +6,106 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour, IPunObservable
 {
-    private SphereCollider Trigger;
-    private PhotonView photonView;
-    private AmmoUI my_ui;
-    private GameObject camera_X;
-    private GameObject Arm;
+   
+    public PhotonView photonView;
+    public GameObject camera_X;
+    public GameObject Arm;
 
-    private string name;
-    private float step;
-    private float run;
-    private float heat_point;
-
-
+    public AmmoUI my_ui;
     public My_input mu_input;
     public Weapone my_weapone;
+    private State my_state;
+    public SphereCollider Trigger;
 
+    public string name;
 
+    public float step;
+    public float run;
+    public float heat_point;
 
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(name);
+            stream.SendNext(step);
+            stream.SendNext(run);
+            stream.SendNext(heat_point);
 
-    
+            //stream.SendNext(camera_X);
+            //stream.SendNext(Arm);
+            //stream.SendNext(my_ui);
+            //stream.SendNext(mu_input);
+            //stream.SendNext(my_weapone);
+            //stream.SendNext(my_state);
+            //stream.SendNext(Trigger);
+           
+          
+        }
+        if (stream.IsReading)
+        {
+            name = (string) stream.ReceiveNext();
+            step = (float)stream.ReceiveNext();
+            run = (float)stream.ReceiveNext();
+            heat_point = (float)stream.ReceiveNext();
 
-
-    // Start is called before the first frame update
+            //camera_X = (GameObject) stream.ReceiveNext();
+            //Arm = (GameObject) stream.ReceiveNext();
+            //my_ui = (AmmoUI) stream.ReceiveNext();
+            //mu_input =  (My_input)stream.ReceiveNext();
+            //my_weapone = (Weapone)stream.ReceiveNext();
+            //my_state = (State) stream.ReceiveNext();
+            //Trigger = (SphereCollider)stream.ReceiveNext();
+        }
+    }
+  
     void Start()
     {
         photonView = GetComponent<PhotonView>();
-        camera_X = transform.GetChild(1).gameObject;
-        Trigger = transform.GetChild(0).GetComponent<SphereCollider>();
-        mu_input = new Keyboard(step, camera_X, gameObject);
-        Arm = gameObject.transform.GetChild(1).transform.GetChild(0).gameObject;
 
         Screen.lockCursor = true;
+        camera_X = transform.GetChild(1).gameObject;
+        Trigger = transform.GetChild(0).GetComponent<SphereCollider>();
+        mu_input = new Keyboard(step, run, camera_X, gameObject);
+        my_state = new State();
+        Arm = gameObject.transform.GetChild(1).transform.GetChild(0).gameObject;
 
-        my_weapone = GetComponentInChildren<Gun>();
+     //   my_weapone = GetComponentInChildren<Gun>();
         
         if (my_weapone != null)
         {
             my_weapone.equip();
         }
-   
-        
-        
-
-
+  
     }
 
 
-    // Update is called once per frame
+  
     void Update()
     {
         if(!photonView.IsMine) return;
 
+        if (my_state.is_menu)
+        {
+            Screen.lockCursor = false;
+        }
+        else if (!my_state.is_menu)
+        {
+            Screen.lockCursor = true;
+        }
 
-        mu_input.Control(my_weapone);
+        mu_input.Control(my_weapone, my_state);
         Take_item();
-        
-
-
-
     }
 
     void FixedUpdate()
     {
-        if(!photonView.IsMine) return;
+       if(!photonView.IsMine) return;
        
 
-        mu_input.Edit_Cord();
-        mu_input.Camera_control();
-      
-      
+       mu_input.Edit_Cord(my_state);     
+       mu_input.Camera_control();
+
     }
 
     void Take_item()
@@ -127,8 +158,4 @@ public class Unit : MonoBehaviour, IPunObservable
         }
     }
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        throw new NotImplementedException();
-    }
 }

@@ -1492,6 +1492,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 483117331799362979, guid: b664721babdde3a4b8ce0ac0d20ebdae,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 424003971}
+    - target: {fileID: 483117331799362979, guid: b664721babdde3a4b8ce0ac0d20ebdae,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Leave
+      objectReference: {fileID: 0}
     - target: {fileID: 6078908660188994752, guid: b664721babdde3a4b8ce0ac0d20ebdae,
         type: 3}
       propertyPath: my_weapone

@@ -13,9 +13,10 @@ public class Keyboard : My_input
         this.step = step;
        
     }
-    public Keyboard(float step,GameObject camera_x, GameObject player)
+    public Keyboard(float step, float run,GameObject camera_x, GameObject player)
     {
         this.step = step;
+        this.run = run;
         this.camera_x = camera_x;  
         this.player = player;
     }
@@ -30,40 +31,71 @@ public class Keyboard : My_input
 
   
 
-    public override void Control(Weapone _mu_weapone)
+    public override void Control(Weapone _mu_weapone, State _state)
     {
-        
-        move_step = new Vector3(0,0,0);
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+          
+            _state.is_menu = !_state.is_menu;
+        }
+       
 
         #region move
+        //run
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+         
+            temp_step = run;
+        }
+        else
+        {
+            temp_step = step;
+        }
+
         //right
         if (Input.GetKey(KeyCode.D))
         {
-            move_step.x = step;
-           
+          
+            _state.right = true;
+        }
+        else
+        {
+            _state.right = false;
         }
     
         //left
         if (Input.GetKey(KeyCode.A))
         {
-            move_step.x += -step;
-       
+         
+            _state.left = true;
         }
-       
+        else
+        {
+            _state.left = false;
+        }
+
         //forward
         if (Input.GetKey(KeyCode.W))
         {
-            move_step.z = step;
-         
+          
+            _state.forward = true;
+        }
+        else
+        {
+            _state.forward = false;
         }
 
         //beak
         if (Input.GetKey(KeyCode.S))
         {
-            move_step.z += -step ;
-        
+         
+            _state.back = true;
         }
-
+        else
+        {
+            _state.back = false;
+        }
 
         ////jump
         //if (Input.GetKeyDown(KeyCode.S))
@@ -72,16 +104,7 @@ public class Keyboard : My_input
 
         //}
 
-
-        ////run
-        //if (Input.GetKeyDown(KeyCode.S))
-        //{
-
-
-        //}
-
         #endregion move
-
 
         #region Weapone
         //shot
@@ -100,7 +123,6 @@ public class Keyboard : My_input
             }
         }
 
-
         //reload
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -108,46 +130,40 @@ public class Keyboard : My_input
             {
                 _mu_weapone.Reload();
             }
-          
-
         }
-        //else
-        //{
-        //    _mu_weapone.is_reload = false;
-        //}
+        
 
         #endregion Weapone
     }
 
 
 
-    public override void Edit_Cord()
+    public override void Edit_Cord(State _state)
     {
-
-        if (move_step.z < 0)
+        if (!_state.is_menu)
         {
-            player.transform.Translate(-Vector3.forward * Time.deltaTime / step);
-        }
-        if (move_step.z > 0)
-        {
-            player.transform.Translate(Vector3.forward * Time.deltaTime / step);
-        }
-        if (move_step.x < 0)
-        {
-            player.transform.Translate(-Vector3.right * Time.deltaTime / step);
-        }
-        if (move_step.x > 0)
-        {
-            player.transform.Translate(Vector3.right * Time.deltaTime / step);
-        }
+            if (_state.back)
+            {
+                player.transform.Translate(-Vector3.forward * Time.deltaTime / temp_step);
+            }
+            else if (_state.forward)
+            {
+                player.transform.Translate(Vector3.forward * Time.deltaTime / temp_step);
+            }
+            if (_state.left)
+            {
+                player.transform.Translate(-Vector3.right * Time.deltaTime / temp_step);
+            }
+            if (_state.right)
+            {
+                player.transform.Translate(Vector3.right * Time.deltaTime / temp_step);
+            }
 
-        player.transform.Rotate(new Vector3(0, move_camera.x, 0));
+            player.transform.Rotate(new Vector3(0, move_camera.x, 0));
 
-        camera_x.transform.Rotate(new Vector3(-move_camera.y, 0, 0));
-
-
-       
+            camera_x.transform.Rotate(new Vector3(-move_camera.y, 0, 0));
+        }
     }
-    // Update is called once per frame
+  
 
 }
