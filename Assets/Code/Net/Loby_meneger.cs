@@ -38,6 +38,8 @@ public class Loby_meneger : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Log("Joined to Room");
+
+        PhotonNetwork.LoadLevel("Game");
     }
 
     private void Log(string message)

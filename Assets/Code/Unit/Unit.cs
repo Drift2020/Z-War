@@ -1,40 +1,54 @@
-﻿using System;
+﻿using Photon.Pun;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unit : MonoBehaviour
+public class Unit : MonoBehaviour, IPunObservable
 {
-    SphereCollider Trigger;
-    PhotonView photonView;
+    private SphereCollider Trigger;
+    private PhotonView photonView;
+    private AmmoUI my_ui;
+    private GameObject camera_X;
+    private GameObject Arm;
+
+    private string name;
+    private float step;
+    private float run;
+    private float heat_point;
+
 
     public My_input mu_input;
-
     public Weapone my_weapone;
 
-    public string name;
-    public float step;
-    public float run;
-    public float heat_point;
-   
-    public GameObject camera_X;
-    public GameObject Arm;
+
+
+
+    
 
 
     // Start is called before the first frame update
     void Start()
     {
         photonView = GetComponent<PhotonView>();
+        camera_X = transform.GetChild(1).gameObject;
+        Trigger = transform.GetChild(0).GetComponent<SphereCollider>();
+        mu_input = new Keyboard(step, camera_X, gameObject);
+        Arm = gameObject.transform.GetChild(1).transform.GetChild(0).gameObject;
+
         Screen.lockCursor = true;
+
         my_weapone = GetComponentInChildren<Gun>();
         
         if (my_weapone != null)
         {
             my_weapone.equip();
         }
-        mu_input = new Keyboard(step, camera_X,gameObject);
-        Trigger = transform.GetChild(0).GetComponent<SphereCollider>();
+   
         
+        
+
+
     }
 
 
@@ -42,6 +56,7 @@ public class Unit : MonoBehaviour
     void Update()
     {
         if(!photonView.IsMine) return;
+
 
         mu_input.Control(my_weapone);
         Take_item();
@@ -54,7 +69,8 @@ public class Unit : MonoBehaviour
     void FixedUpdate()
     {
         if(!photonView.IsMine) return;
-        
+       
+
         mu_input.Edit_Cord();
         mu_input.Camera_control();
       
@@ -65,7 +81,7 @@ public class Unit : MonoBehaviour
     {
         foreach (Collider item in Physics.OverlapSphere(transform.position, 0.5f))
         {
-            Debug.Log(item.tag);
+           
             if (item.tag == "Ammo")
             {
                 Ammo _ammo = item.GetComponent<Ammo>();
@@ -86,7 +102,7 @@ public class Unit : MonoBehaviour
                 if (heat_point<100)
                 {
 
-                    heat_point += Medicine_chest.count;
+                    heat_point += _medicine_chest.count;
 
                     if(heat_point>100)
                     {
@@ -110,7 +126,9 @@ public class Unit : MonoBehaviour
 
         }
     }
-   
 
-
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        throw new NotImplementedException();
+    }
 }

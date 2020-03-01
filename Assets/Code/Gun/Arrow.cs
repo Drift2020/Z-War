@@ -8,7 +8,9 @@ public class Arrow : MonoBehaviour, Bullet
     public float radius { get; set; }
     public bool is_collision { get; set; }
 
-    public int Speed { get; set; }
+    public float Speed { get; set; }
+  
+
     Vector3 lastPos;
     public GameObject decal;
 

@@ -34,7 +34,8 @@ public class Keyboard : My_input
     {
         
         move_step = new Vector3(0,0,0);
-       
+
+        #region move
         //right
         if (Input.GetKey(KeyCode.D))
         {
@@ -63,13 +64,29 @@ public class Keyboard : My_input
         
         }
 
+
+        ////jump
+        //if (Input.GetKeyDown(KeyCode.S))
+        //{
+
+
+        //}
+
+
+        ////run
+        //if (Input.GetKeyDown(KeyCode.S))
+        //{
+
+
+        //}
+
+        #endregion move
+
+
+        #region Weapone
         //shot
         if (Input.GetMouseButton(0))
         {
-
-            //  my_weapone.is_shot = true;
-            //  my_weapone.Trigger_is_pulled();
-            //   my_weapone.re_shot = false;
             if (_mu_weapone != null)
             {
                 _mu_weapone.Trigger_is_pulled();
@@ -81,8 +98,6 @@ public class Keyboard : My_input
             {
                 _mu_weapone.Trigger_is_not_pulled();
             }
-         //   my_weapone.is_shot = false;
-          //  my_weapone.re_shot = true;
         }
 
 
@@ -101,27 +116,12 @@ public class Keyboard : My_input
         //    _mu_weapone.is_reload = false;
         //}
 
-        ////jump
-        //if (Input.GetKeyDown(KeyCode.S))
-        //{
-
-
-        //}
-
-
-        ////run
-        //if (Input.GetKeyDown(KeyCode.S))
-        //{
-
-
-        //}
-
-
+        #endregion Weapone
     }
 
 
 
-  public override void Edit_Cord()
+    public override void Edit_Cord()
     {
 
         if (move_step.z < 0)
@@ -141,11 +141,6 @@ public class Keyboard : My_input
             player.transform.Translate(Vector3.right * Time.deltaTime / step);
         }
 
-
-
-
-
-      
         player.transform.Rotate(new Vector3(0, move_camera.x, 0));
 
         camera_x.transform.Rotate(new Vector3(-move_camera.y, 0, 0));

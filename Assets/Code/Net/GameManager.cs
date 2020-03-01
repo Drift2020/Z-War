@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
+using Photon.Realtime;
 
-public class Loby_meneger : MonoBehaviourPunCallbacks
+public class GameManager : MonoBehaviourPunCallbacks
 {
     public GameObject PlayerPrefab;
 
@@ -22,8 +24,9 @@ public class Loby_meneger : MonoBehaviourPunCallbacks
     public override void OnLeftRoom()
     {
         //when current user left game server
-        ScreneManager.LoadScene(0);
+        SceneManager.LoadScene(0);
     }
+  
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
